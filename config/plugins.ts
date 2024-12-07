@@ -6,17 +6,24 @@ export default ({ env }) => ({
     },
     upload: {
         config: {
-            provider: 'cloudinary',
-            providerOptions: {
-                cloud_name: env('CLOUDINARY_NAME'),
-                api_key: env('CLOUDINARY_KEY'),
-                api_secret: env('CLOUDINARY_SECRET'),
+          provider: "aws-s3",
+          providerOptions: {
+            rootPath: env("DO_SPACE_PATH"),
+            credentials: {
+              accessKeyId: env("DO_SPACE_ACCESS_KEY"),
+              secretAccessKey: env("DO_SPACE_SECRET_KEY"),
             },
-            actionOptions: {
-                upload: {},
-                uploadStream: {},
-                delete: {},
+            region: env("DO_SPACE_REGION"),
+            endpoint: env("DO_SPACE_ENDPOINT"),
+            params: {
+              Bucket: env("DO_SPACE_BUCKET"),
             },
+          },
+          actionOptions: {
+            upload: {},
+            uploadStream: {},
+            delete: {},
+          },
         },
-    },
+      },
 });
