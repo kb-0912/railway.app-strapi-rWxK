@@ -1,5 +1,30 @@
 import type { Struct, Schema } from '@strapi/strapi';
 
+export interface FaqFaq extends Struct.ComponentSchema {
+  collectionName: 'components_faq_faqs';
+  info: {
+    displayName: 'FAQ';
+    description: '';
+  };
+  attributes: {
+    Title: Schema.Attribute.String & Schema.Attribute.Required;
+    Question: Schema.Attribute.Component<'faq.faq-question', true>;
+    Bookmark: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface FaqFaqQuestion extends Struct.ComponentSchema {
+  collectionName: 'components_faq_faq_questions';
+  info: {
+    displayName: 'FaqQuestion';
+    description: '';
+  };
+  attributes: {
+    Title: Schema.Attribute.String & Schema.Attribute.Required;
+    Text: Schema.Attribute.Text & Schema.Attribute.Required;
+  };
+}
+
 export interface HomepageHeroBanner extends Struct.ComponentSchema {
   collectionName: 'components_homepage_hero_banners';
   info: {
@@ -26,42 +51,6 @@ export interface HomepageCta extends Struct.ComponentSchema {
   };
 }
 
-export interface ColorImageColorImage extends Struct.ComponentSchema {
-  collectionName: 'components_color_image_color_images';
-  info: {
-    displayName: 'ColorImage';
-    icon: 'picture';
-  };
-  attributes: {
-    Image: Schema.Attribute.Media<'images' | 'files'>;
-  };
-}
-
-export interface FaqFaq extends Struct.ComponentSchema {
-  collectionName: 'components_faq_faqs';
-  info: {
-    displayName: 'FAQ';
-    description: '';
-  };
-  attributes: {
-    Title: Schema.Attribute.String & Schema.Attribute.Required;
-    Question: Schema.Attribute.Component<'faq.faq-question', true>;
-    Bookmark: Schema.Attribute.String & Schema.Attribute.Required;
-  };
-}
-
-export interface FaqFaqQuestion extends Struct.ComponentSchema {
-  collectionName: 'components_faq_faq_questions';
-  info: {
-    displayName: 'FaqQuestion';
-    description: '';
-  };
-  attributes: {
-    Title: Schema.Attribute.String & Schema.Attribute.Required;
-    Text: Schema.Attribute.Text & Schema.Attribute.Required;
-  };
-}
-
 export interface ColorHexColorHex extends Struct.ComponentSchema {
   collectionName: 'components_color_hex_color_hexes';
   info: {
@@ -70,6 +59,17 @@ export interface ColorHexColorHex extends Struct.ComponentSchema {
   };
   attributes: {
     Color: Schema.Attribute.String;
+  };
+}
+
+export interface ColorImageColorImage extends Struct.ComponentSchema {
+  collectionName: 'components_color_image_color_images';
+  info: {
+    displayName: 'ColorImage';
+    icon: 'picture';
+  };
+  attributes: {
+    Image: Schema.Attribute.Media<'images' | 'files'>;
   };
 }
 
@@ -125,12 +125,12 @@ export interface AboutUsContentSection extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
-      'homepage.hero-banner': HomepageHeroBanner;
-      'homepage.cta': HomepageCta;
-      'color-image.color-image': ColorImageColorImage;
       'faq.faq': FaqFaq;
       'faq.faq-question': FaqFaqQuestion;
+      'homepage.hero-banner': HomepageHeroBanner;
+      'homepage.cta': HomepageCta;
       'color-hex.color-hex': ColorHexColorHex;
+      'color-image.color-image': ColorImageColorImage;
       'about-us.why-us': AboutUsWhyUs;
       'about-us.tile': AboutUsTile;
       'about-us.numerical-content': AboutUsNumericalContent;
