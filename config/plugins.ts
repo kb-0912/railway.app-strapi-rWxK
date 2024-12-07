@@ -6,23 +6,17 @@ export default ({ env }) => ({
     },
     upload: {
         config: {
-          provider: "aws-s3",
+          provider: 'aws-s3',
           providerOptions: {
-            rootPath: env("DO_SPACE_PATH"),
             credentials: {
-              accessKeyId: env("DO_SPACE_ACCESS_KEY"),
-              secretAccessKey: env("DO_SPACE_SECRET_KEY"),
+              accessKeyId: env('S3_ACCESS_KEY_ID'),
+              secretAccessKey: env('S3_ACCESS_SECRET'),
             },
-            region: env("DO_SPACE_REGION"),
-            endpoint: env("DO_SPACE_ENDPOINT"),
+            region: env('S3_REGION'), // e.g "fr-par"
+            endpoint: env('S3_ENDPOINT'), // e.g. "https://s3.fr-par.scw.cloud"
             params: {
-              Bucket: env("DO_SPACE_BUCKET"),
+              Bucket: env('S3_BUCKET'),
             },
-          },
-          actionOptions: {
-            upload: {},
-            uploadStream: {},
-            delete: {},
           },
         },
       },

@@ -26,6 +26,17 @@ export interface HomepageCta extends Struct.ComponentSchema {
   };
 }
 
+export interface ColorImageColorImage extends Struct.ComponentSchema {
+  collectionName: 'components_color_image_color_images';
+  info: {
+    displayName: 'ColorImage';
+    icon: 'picture';
+  };
+  attributes: {
+    Image: Schema.Attribute.Media<'images' | 'files'>;
+  };
+}
+
 export interface FaqFaq extends Struct.ComponentSchema {
   collectionName: 'components_faq_faqs';
   info: {
@@ -48,17 +59,6 @@ export interface FaqFaqQuestion extends Struct.ComponentSchema {
   attributes: {
     Title: Schema.Attribute.String & Schema.Attribute.Required;
     Text: Schema.Attribute.Text & Schema.Attribute.Required;
-  };
-}
-
-export interface ColorImageColorImage extends Struct.ComponentSchema {
-  collectionName: 'components_color_image_color_images';
-  info: {
-    displayName: 'ColorImage';
-    icon: 'picture';
-  };
-  attributes: {
-    Image: Schema.Attribute.Media<'images' | 'files'>;
   };
 }
 
@@ -127,9 +127,9 @@ declare module '@strapi/strapi' {
     export interface ComponentSchemas {
       'homepage.hero-banner': HomepageHeroBanner;
       'homepage.cta': HomepageCta;
+      'color-image.color-image': ColorImageColorImage;
       'faq.faq': FaqFaq;
       'faq.faq-question': FaqFaqQuestion;
-      'color-image.color-image': ColorImageColorImage;
       'color-hex.color-hex': ColorHexColorHex;
       'about-us.why-us': AboutUsWhyUs;
       'about-us.tile': AboutUsTile;
